@@ -1,3 +1,7 @@
+//Help from TA Che-Yu
+//Image referenced from https://editor.p5js.org/sl/sketches/SJ6QtM3SX
+//Rain function taken from https://p5js.org/examples/simulate-snowflakes.html
+
 var canvas;
 var sound1;
 var sound2;
@@ -15,7 +19,6 @@ function preload(){
   
 }
 
-
 function setup() {
 
   sound1.play()
@@ -32,8 +35,8 @@ function draw() {
   background(100);
   imageMode(CENTER);
 
-  let f = frameCount/60;
-  for (var i=0; i<random(5); i++) {
+  let f = frameCount/120; //creating the animation 
+  for (var i=0; i<random(5); i++) { //quantity of the drizzles
     raindrops.push(new rain());
   }
   for (let drops of raindrops) {
@@ -41,13 +44,14 @@ function draw() {
     drops.display(); 
   }
 
-  if (bf==false){
-	fill(255)
+  if (bf == false){ //stating condition for before and after
+	fill(255);
   	image(beforeImage,450,475,800,850);
   }
-  if (bf==true){
-  	fill(255)
+  if (bf == true){
+  	fill(220,20,60);
   	image(afterImage,450,475,800,1050);
+
   }
 }
 
@@ -56,19 +60,20 @@ function rain(){
   this.posX = 0;
   this.posY = random(-100,0);
   this.initialangle = random(0,5);
-  this.size = random(2,5);
+  this.size = random(2,6);
+  this.size2 = random(4,7);
 
   this.radius = sqrt(random(pow(width/2,2)));
 
   this.update = function(time) {
-    let w = 0.03; 
+    let w = 0.03; //deviation of the snow
     let angle = w*time + this.initialangle;
     this.posX = width/2 + this.radius*sin(angle);
     this.posY += pow(this.size, 0.5);
   }
 
   this.display = function() {
-    ellipse(this.posX, this.posY, this.size);
+    ellipse(this.posX, this.posY, this.size, this.size2);
   }
 
 };
@@ -78,5 +83,5 @@ function mousePressed(){
 	fill(255);
 	bf = true
 	sound2.play();
-
 }
+
