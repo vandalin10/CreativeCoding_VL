@@ -136,6 +136,8 @@ function draw() {
 			}
 		}
 
+		//if pills are on top of crying girl, img crying2 will appear
+
 	}
 
 	function deadScene(){
