@@ -14,6 +14,10 @@ var penY = 450;
 
 var Drizzle;
 var Sobbing;
+var Busan;
+var Hospital;
+var Open;
+var Silence;
 
 var raindrops = [];
 
@@ -35,6 +39,10 @@ var handcuffed;
 function preload(){
 	Drizzle = loadSound("assets/Drizzle.wav");
 	Sobbing = loadSound("assets/Sobbing.wav");
+	Busan = loadSound("assets/Busan.m4a");
+	Hospital = loadSound("assets/Hospital.m4a");
+	Open = loadSound("assets/Open.wav");
+	Silence = loadSound("assets/Silence.m4a");
 
 
 	meeting = loadImage("assets/meeting.png"); //scene0
@@ -172,6 +180,8 @@ function deadScene(){
 
 function timeScene(){
 
+	Busan.stop();
+
 	textSize(50);
 	fill(0);
 	textAlign(CENTER,CENTER);
@@ -186,6 +196,8 @@ function murdererScene(){
 }
 
 function almostScene(){
+
+	Hospital.stop();
 
 
 	if(beforedead == false){
@@ -224,6 +236,8 @@ function accuseScene(){
 
 function caughtScene(){
 
+	Open.stop();
+
 	image(handcuffed,-100,0,1200,800);
 	image(replayButton,backPosX,backPosY,backSize,backSize);
 
@@ -253,6 +267,7 @@ function mousePressed(){
 
 		if(mouseX>935 && mouseX<970 && mouseY>730 && mouseY<770){
 			stateIndex = 2;
+			Busan.play();
 		}
 	}
 
@@ -266,6 +281,7 @@ function mousePressed(){
 	else if(stateIndex == 3){
 		if(mouseX>935 && mouseX<970 && mouseY>730 && mouseY<770){
 			stateIndex = 4;
+			Hospital.play();
 		}
 	}
 
@@ -280,18 +296,21 @@ function mousePressed(){
 	else if(stateIndex == 5){
 		if(mouseX>935 && mouseX<970 && mouseY>730 && mouseY<770){
 			stateIndex = 6;
+			Open.play();
 		}
 	}
 
 	else if(stateIndex == 6){
 		if(mouseX>935 && mouseX<970 && mouseY>730 && mouseY<770){
 			stateIndex = 7;
+			Silence.play();
 		}
 	}
 
 	else if(stateIndex == 7){
 		if(mouseX>935 && mouseX<970 && mouseY>730 && mouseY<770){
 			stateIndex = 0;
+			Silence.stop();
 		}
 	}
 
